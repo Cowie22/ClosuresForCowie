@@ -10,8 +10,20 @@ with the 3rd and 4th argument that are passed to your closure
 Use the tests to guide your solution
 */
 
-const loginProtect = function () {
 
+const myFunc = function(a, b) {
+  return a + b;
+} 
+
+const loginProtect = function(username, password, func) {
+  return function(myUsername, myPassword, a, b) {
+    if (myUsername === username && myPassword === password) {
+      return func(a, b);
+    }
+  }
 }
+
+const login1 = loginProtect('foo', 'bar', myFunc);
+login1('foo', 'bar', 8, 14);
 
 module.exports = loginProtect
